@@ -13,14 +13,6 @@ _Nothing yet._
 
 ## 📋 Up Next (ordered)
 
-### Session 1 — Project Skeleton
-- [ ] Verify `build.gradle.kts` has correct dependencies (JLine 3, Gson, Reflections, JUnit 6 BOM `6.0.0`)
-- [ ] Add `application` plugin to `build.gradle.kts`, set `mainClass` to `core.launcher.Main`
-- [ ] Set run configuration working directory to project root (save file path resolution)
-- [ ] Create all empty packages under `src/main/java/` and `src/test/java/`
-- [ ] Create `.gitignore` entry for `save/arcade_save.json`
-- [ ] Create `save/` directory with `.gitkeep`
-
 ### Session 2 — Core TUI (`core/tui/`)
 - [ ] `Color.java` — ANSI constants + `red()`, `green()`, `yellow()`, `bold()`, `dim()` helpers
 - [ ] `Terminal.java` — JLine 3 wrapper: raw mode on/off, `readKey()`, `moveCursor()`, `clearLine()`, `clearScreen()`, `print()`, `println()`
@@ -91,4 +83,10 @@ _None currently._
 
 ## ✅ Done
 
-_Nothing yet._
+### Session 1 — Project Skeleton
+- [x] Verify `build.gradle.kts` has correct dependencies (JLine 3, Gson, Reflections, JUnit 6 BOM `6.0.0`)
+- [x] Add `application` plugin to `build.gradle.kts`, set `mainClass` to `core.launcher.Main`
+- [x] Set run task `workingDir = projectDir` in `build.gradle.kts`
+- [x] Create all empty packages under `src/main/java/` and `src/test/java/`
+- [x] Create `.gitignore` entry for `save/arcade_save.json`
+- [x] Create `save/` directory with `.gitkeep`

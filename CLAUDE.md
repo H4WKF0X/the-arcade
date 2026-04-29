@@ -213,9 +213,9 @@ Do NOT try to test actual terminal I/O or raw mode in unit tests.
 
 > **Update this section at the end of every session.**
 
-- [ ] Project created in IntelliJ (Gradle, Kotlin DSL, JDK 21, GroupId `com.mpaesold.arcade`, ArtifactId `the-arcade`)
-- [ ] `build.gradle.kts` dependencies added
-- [ ] Package structure created
+- [x] Project created in IntelliJ (Gradle, Kotlin DSL, JDK 21, GroupId `com.mpaesold.arcade`, ArtifactId `the-arcade`)
+- [x] `build.gradle.kts` dependencies added + `application` plugin + `mainClass = core.launcher.Main` + `workingDir = projectDir`
+- [x] Package structure created (all directories + `.gitkeep` files)
 - [ ] `core/tui/` implemented
 - [ ] `core/game/` interfaces implemented
 - [ ] `core/save/` implemented
@@ -224,12 +224,13 @@ Do NOT try to test actual terminal I/O or raw mode in unit tests.
 - [ ] Core tests written
 - [ ] End-to-end launch works
 
-**Currently working on:** _nothing yet — project not started_  
-**Last decision made:** _n/a_  
-**Blockers / open questions:** _none_
+**Currently working on:** _nothing — Session 1 complete_  
+**Last decision made:** Java packages are `core.*` / `games.*` directly (no `com.mpaesold.arcade` prefix in path)  
+**Blockers / open questions:**_nothing_
 
 ---
 
 ## Notes for Next Session
 
-_Empty until first session completes. Claude: fill this in before ending a session._
+- All package directories exist with `.gitkeep` — ready to populate with Java source in Session 2
+- Next session: Session 2 — `core/tui/` (`Color`, `Terminal`, `MenuOption`, `Menu`, `Spinner`)
