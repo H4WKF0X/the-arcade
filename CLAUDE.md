@@ -215,22 +215,33 @@ Do NOT try to test actual terminal I/O or raw mode in unit tests.
 
 - [x] Project created in IntelliJ (Gradle, Kotlin DSL, JDK 21, GroupId `com.mpaesold.arcade`, ArtifactId `the-arcade`)
 - [x] `build.gradle.kts` dependencies added + `application` plugin + `mainClass = core.launcher.Main` + `workingDir = projectDir`
-- [x] Package structure created (all directories + `.gitkeep` files)
-- [ ] `core/tui/` implemented
+- [x] Package structure created (all directories; `.gitkeep` removed from src dirs, kept in `save/`)
+- [x] `core/tui/` implemented (`Color`, `Terminal`, `MenuOption`, `Menu`, `Spinner`, `MenuDemo`)
 - [ ] `core/game/` interfaces implemented
 - [ ] `core/save/` implemented
 - [ ] `core/launcher/` implemented
 - [ ] `games/roulette/` implemented
-- [ ] Core tests written
+- [x] Core TUI tests written (`ColorTest`, `MenuStateTest` — all passing)
 - [ ] End-to-end launch works
 
-**Currently working on:** _nothing — Session 1 complete_  
-**Last decision made:** Java packages are `core.*` / `games.*` directly (no `com.mpaesold.arcade` prefix in path)  
-**Blockers / open questions:**_nothing_
+**Currently working on:** _nothing — Session 2 complete (TUI verified working)_  
+**Last decision made:** TUI rendering uses `clearScreen()` per render cycle (not `moveCursor`); cursor/screen control goes through `jline.puts(Capability)` not raw ANSI bytes  
+**Blockers / open questions:** _nothing_
 
 ---
 
 ## Notes for Next Session
 
-- All package directories exist with `.gitkeep` — ready to populate with Java source in Session 2
-- Next session: Session 2 — `core/tui/` (`Color`, `Terminal`, `MenuOption`, `Menu`, `Spinner`)
+- Next session: Session 3 — `core/game/` (`ArcadeGame`, `GameMetadata`, `GameResult`, `Game`, `GameContext`, `GameRegistry`)
+- `MenuDemo` in `core/tui/MenuDemo.java` is a temporary smoke-test — delete before v0.1.0
+
+## Windows Terminal Notes (do not re-debate)
+
+These were learned the hard way in Session 2. Do not try to change them.
+
+- **Raw ANSI cursor/screen bytes do NOT work** on Windows via `jline.writer()`. JLine's `WindowsAnsiOutputStream` handles SGR (color) codes via Windows API but passes other sequences through as raw bytes, which appear as text without VT processing.
+- **Use `jline.puts(InfoCmp.Capability.*)`** for all cursor/screen control — this routes through JLine's own mechanism and works correctly.
+- **Use `clearScreen()` per render cycle** instead of `moveCursor(1,1)` + `clearLine()`. `cursor_address` capability does not work correctly on this setup; `clear_screen` does.
+- **UTF-8**: `SetConsoleOutputCP(65001)` + `SetConsoleCP(65001)` called via JNA in `Terminal()` constructor — eliminates need for `chcp 65001`.
+- **Arrow keys**: use `BindingReader` + `KeyMap` — manual ESC sequence parsing races and fails on Windows.
+- **Run the demo**: `"%JAVA_HOME%\bin\java" -cp "build\libs\the-arcade-1.0-SNAPSHOT.jar;build\install\the-arcade\lib\*" -Dstdout.encoding=UTF-8 core.tui.MenuDemo`

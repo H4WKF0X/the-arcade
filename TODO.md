@@ -13,15 +13,6 @@ _Nothing yet._
 
 ## 📋 Up Next (ordered)
 
-### Session 2 — Core TUI (`core/tui/`)
-- [ ] `Color.java` — ANSI constants + `red()`, `green()`, `yellow()`, `bold()`, `dim()` helpers
-- [ ] `Terminal.java` — JLine 3 wrapper: raw mode on/off, `readKey()`, `moveCursor()`, `clearLine()`, `clearScreen()`, `print()`, `println()`
-- [ ] `MenuOption.java` — title + detail string, simple record or POJO
-- [ ] `Menu.java` — renders list, handles UP/DOWN/ENTER/ESC, shows detail panel on hover, returns selected index or -1 for escape
-- [ ] `Spinner.java` — simple animated spinner for suspense moments
-- [ ] Write a `MenuDemo` main method (can be deleted later) that shows the menu working end-to-end
-- [ ] JUnit 6 tests: `Color`, headless `Menu` state logic, ANSI string helpers
-
 ### Session 3 — Core Game Interfaces (`core/game/`)
 - [ ] `ArcadeGame.java` — the annotation
 - [ ] `GameMetadata.java` — name, description, author; static `fromAnnotation()` helper
@@ -82,6 +73,15 @@ _None currently._
 ---
 
 ## ✅ Done
+
+### Session 2 — Core TUI (`core/tui/`)
+- [x] `Color.java` — ANSI constants + `red()`, `green()`, `yellow()`, `bold()`, `dim()`, `cyan()` helpers
+- [x] `Terminal.java` — JLine 3 wrapper: raw mode on/off, `readKey()`, `moveCursor()`, `clearLine()`, `clearScreen()`, `print()`, `println()`
+- [x] `MenuOption.java` — record with `title` + `detail`, factory `of()` overloads
+- [x] `Menu.java` — renders list, handles UP/DOWN/ENTER/ESC, detail panel on hover, returns selected index or -1 for escape
+- [x] `Spinner.java` — braille-frame animated spinner with `start(msg)` / `stop(msg)` / `pause()` static helper
+- [x] `MenuDemo.java` — temporary smoke-test main method (spinner + menu end-to-end)
+- [x] JUnit 6 tests: `ColorTest` (constants + helpers), `MenuStateTest` (13 cases, headless) — all passing
 
 ### Session 1 — Project Skeleton
 - [x] Verify `build.gradle.kts` has correct dependencies (JLine 3, Gson, Reflections, JUnit 6 BOM `6.0.0`)
