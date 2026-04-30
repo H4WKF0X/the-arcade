@@ -244,4 +244,5 @@ These were learned the hard way in Session 2. Do not try to change them.
 - **Use `clearScreen()` per render cycle** instead of `moveCursor(1,1)` + `clearLine()`. `cursor_address` capability does not work correctly on this setup; `clear_screen` does.
 - **UTF-8**: `SetConsoleOutputCP(65001)` + `SetConsoleCP(65001)` called via JNA in `Terminal()` constructor — eliminates need for `chcp 65001`.
 - **Arrow keys**: use `BindingReader` + `KeyMap` — manual ESC sequence parsing races and fails on Windows.
-- **Run the demo**: `"%JAVA_HOME%\bin\java" -cp "build\libs\the-arcade-1.0-SNAPSHOT.jar;build\install\the-arcade\lib\*" -Dstdout.encoding=UTF-8 core.tui.MenuDemo`
+- **Run the demo**: `demo.bat` (project root) — builds via `gradlew installDist` then launches with `%JAVA_HOME%\bin\java` directly (bypasses Gradle's stdin pipe). Requires `JAVA_HOME` set to JDK 21 and `%JAVA_HOME%\bin` at the top of the system PATH.
+- **`gradlew menuDemo` does NOT work for interactive TUI** — Gradle always forks a daemon that has no console attached, so JLine falls back to dumb terminal. Cannot be fixed from the build script.
