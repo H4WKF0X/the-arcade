@@ -224,7 +224,7 @@ Do NOT try to test actual terminal I/O or raw mode in unit tests.
 - [ ] `games/roulette/` implemented
 - [x] Core TUI tests written (`ColorTest`, `MenuStateTest` — all passing)
 - [x] `core/game/` tests written (`GameResultTest`, `GameRegistryTest` — all passing)
-- [x] `core/save/` tests written (`PlayerProfileTest` 9 tests, `SaveManagerTest` 7 tests — all passing)
+- [x] `core/save/` tests written (`PlayerProfileTest` 9 tests, `SaveManagerTest` 9 tests — all passing); corrupted-JSON bug fixed; `getGlobal()` added to `JsonSaveManager`
 - [ ] End-to-end launch works
 
 **Currently working on:** _nothing — Session 4 complete_  

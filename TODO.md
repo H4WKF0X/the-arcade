@@ -64,7 +64,9 @@ _None currently._
 - [x] `SaveFile.java` — players map + global map, Gson serialization
 - [x] `SaveManager.java` — interface
 - [x] `JsonSaveManager.java` — loads from / writes to `save/arcade_save.json` via Gson; `File` constructor arg for testability
-- [x] JUnit 6 tests: `PlayerProfileTest` (9 cases), `SaveManagerTest` (7 cases) — all passing
+- [x] JUnit 6 tests: `PlayerProfileTest` (9 cases), `SaveManagerTest` (9 cases) — all passing
+- [x] Fixed: corrupted JSON file now returns empty save (was leaking `JsonSyntaxException`)
+- [x] Added: `getGlobal()` on `JsonSaveManager` (not on interface) for launcher use
 
 ### Session 3 — Core Game Interfaces (`core/game/`)
 - [x] `ArcadeGame.java` — the annotation

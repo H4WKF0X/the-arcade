@@ -29,9 +29,13 @@ public class JsonSaveManager implements SaveManager {
         try (Reader reader = new FileReader(file)) {
             SaveFile loaded = gson.fromJson(reader, SaveFile.class);
             return loaded != null ? loaded : new SaveFile();
-        } catch (IOException e) {
+        } catch (IOException | RuntimeException e) {
             return new SaveFile();
         }
+    }
+
+    public java.util.Map<String, Object> getGlobal() {
+        return saveFile.getGlobal();
     }
 
     @Override

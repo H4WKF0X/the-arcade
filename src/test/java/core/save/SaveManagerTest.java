@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -82,5 +84,24 @@ class SaveManagerTest {
 
         JsonSaveManager mgr2 = new JsonSaveManager(saveFile);
         assertEquals(0, mgr2.getProfile("alice").getInt("roulette.deaths", 0));
+    }
+
+    @Test void global_roundTrip() {
+        File saveFile = tempDir.resolve("save.json").toFile();
+
+        JsonSaveManager mgr = new JsonSaveManager(saveFile);
+        mgr.getGlobal().put("total_sessions", 5);
+        mgr.save();
+
+        JsonSaveManager mgr2 = new JsonSaveManager(saveFile);
+        assertEquals(5.0, ((Number) mgr2.getGlobal().get("total_sessions")).doubleValue(), 0.001);
+    }
+
+    @Test void corruptedFile_returnsEmptySave() throws IOException {
+        File saveFile = tempDir.resolve("corrupt.json").toFile();
+        try (FileWriter fw = new FileWriter(saveFile)) { fw.write("{not valid json!!!"); }
+
+        JsonSaveManager mgr = new JsonSaveManager(saveFile);
+        assertEquals(0, mgr.getProfile("alice").getInt("any", 0));
     }
 }
