@@ -13,15 +13,6 @@ _Nothing yet._
 
 ## 📋 Up Next (ordered)
 
-### Session 3 — Core Game Interfaces (`core/game/`)
-- [ ] `ArcadeGame.java` — the annotation
-- [ ] `GameMetadata.java` — name, description, author; static `fromAnnotation()` helper
-- [ ] `GameResult.java` — factory methods + accessors
-- [ ] `Game.java` — the interface
-- [ ] `GameContext.java` — SaveManager + playerName + Terminal
-- [ ] `GameRegistry.java` — scans classpath for `@ArcadeGame`, instantiates, builds list; fallback reads `games/registry.txt`
-- [ ] JUnit 6 tests: `GameResult` factories, `GameRegistry` with a fake annotated class
-
 ### Session 4 — Core Save System (`core/save/`)
 - [ ] `PlayerProfile.java` — flat key-value, typed getters with defaults, `set()`
 - [ ] `SaveFile.java` — players map + global map, Gson serialization
@@ -73,6 +64,16 @@ _None currently._
 ---
 
 ## ✅ Done
+
+### Session 3 — Core Game Interfaces (`core/game/`)
+- [x] `ArcadeGame.java` — the annotation
+- [x] `GameMetadata.java` — name, description, author
+- [x] `GameResult.java` — factory methods + accessors
+- [x] `Game.java` — the interface
+- [x] `GameContext.java` — SaveManager + playerName + Terminal
+- [x] `GameRegistry.java` — scans classpath for `@ArcadeGame`, instantiates, builds list; fallback reads `games/registry.txt`
+- [x] JUnit 6 tests: `GameResultTest`, `GameRegistryTest` — all passing
+- [x] `SaveManager` + `PlayerProfile` stubs added to unblock compilation (Session 4 replaces them)
 
 ### Session 2 — Core TUI (`core/tui/`)
 - [x] `Color.java` — ANSI constants + `red()`, `green()`, `yellow()`, `bold()`, `dim()`, `cyan()` helpers

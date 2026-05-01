@@ -217,22 +217,23 @@ Do NOT try to test actual terminal I/O or raw mode in unit tests.
 - [x] `build.gradle.kts` dependencies added + `application` plugin + `mainClass = core.launcher.Main` + `workingDir = projectDir`
 - [x] Package structure created (all directories; `.gitkeep` removed from src dirs, kept in `save/`)
 - [x] `core/tui/` implemented (`Color`, `Terminal`, `MenuOption`, `Menu`, `Spinner`, `MenuDemo`)
-- [ ] `core/game/` interfaces implemented
-- [ ] `core/save/` implemented
+- [x] `core/game/` interfaces implemented (`ArcadeGame`, `GameMetadata`, `GameResult`, `Game`, `GameContext`, `GameRegistry`)
+- [ ] `core/save/` implemented (stubs written: `SaveManager` interface + `PlayerProfile` skeleton — Session 4 will flesh out)
 - [ ] `core/launcher/` implemented
 - [ ] `games/roulette/` implemented
 - [x] Core TUI tests written (`ColorTest`, `MenuStateTest` — all passing)
+- [x] `core/game/` tests written (`GameResultTest`, `GameRegistryTest` — all passing)
 - [ ] End-to-end launch works
 
-**Currently working on:** _nothing — Session 2 complete (TUI verified working)_  
-**Last decision made:** TUI rendering uses `clearScreen()` per render cycle (not `moveCursor`); cursor/screen control goes through `jline.puts(Capability)` not raw ANSI bytes  
+**Currently working on:** _nothing — Session 3 complete_  
+**Last decision made:** `GameContext` forward-references `core.save.SaveManager`; minimal stubs for `SaveManager` and `PlayerProfile` were added to unblock compilation — they throw `UnsupportedOperationException` and will be replaced in Session 4.  
 **Blockers / open questions:** _nothing_
 
 ---
 
 ## Notes for Next Session
 
-- Next session: Session 3 — `core/game/` (`ArcadeGame`, `GameMetadata`, `GameResult`, `Game`, `GameContext`, `GameRegistry`)
+- Next session: Session 4 — `core/save/` (`SaveFile`, full `SaveManager` impl, full `PlayerProfile` impl) + `SaveManager` round-trip tests
 - `MenuDemo` in `core/tui/MenuDemo.java` is a temporary smoke-test — delete before v0.1.0
 
 ## Windows Terminal Notes (do not re-debate)
