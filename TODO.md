@@ -21,6 +21,7 @@ _Nothing yet._
 - [ ] JUnit 6 tests: round-trip write/read, default values, multiple profiles, file-not-found bootstrap
 
 ### Session 5 — Russian Roulette (`games/roulette/`)
+- [ ] Strengthen `GameRegistryTest` — add test that a class with `@ArcadeGame` in the `games` package is discovered; add test that a class without the annotation is excluded (currently vacuous assertions)
 - [ ] `RussianRoulette.java` — implements `Game`, annotated with `@ArcadeGame`
 - [ ] Six-chamber logic, one bullet, weighted random
 - [ ] TUI: cylinder spin animation (Spinner), single keypress trigger, BANG vs click outcome
