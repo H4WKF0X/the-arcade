@@ -1,6 +1,7 @@
 # CLAUDE.md — Implementation Reference
 
-> This file is for Claude. Read it at the start of every session. Update it at the end of every session.
+> This file is for Claude. Read it AND `TODO.md` at the start of every session.
+> Update BOTH this file and `TODO.md` at the end of every session — mark completed items done, move them to Done, update "Currently working on" and "Notes for Next Session".
 > It is not a README. It is not for contributors. It is the persistent brain of this project.
 
 ---
@@ -31,7 +32,7 @@ A Java CLI game launcher that forces Russian Roulette every session, then lets t
 
 ## Architectural Decisions (Do Not Re-debate Without Flagging)
 
-- **One save file** (`arcade_save.json` in project root, gitignored). Single-player only for now. No multi-profile support yet.
+- **One save file** (`save/arcade_save.json`, gitignored). Single-player only for now. No multi-profile support yet.
 - **`SaveManager` is the only interface to the save file.** No game ever opens the JSON directly.
 - **Russian Roulette is mandatory on every launch.** It is not configurable. It is not skippable.
 - **`Game` interface has exactly two methods:** `getMetadata()` and `launch(GameContext)`. Do not add more without flagging to owner.
@@ -218,22 +219,24 @@ Do NOT try to test actual terminal I/O or raw mode in unit tests.
 - [x] Package structure created (all directories; `.gitkeep` removed from src dirs, kept in `save/`)
 - [x] `core/tui/` implemented (`Color`, `Terminal`, `MenuOption`, `Menu`, `Spinner`, `MenuDemo`)
 - [x] `core/game/` interfaces implemented (`ArcadeGame`, `GameMetadata`, `GameResult`, `Game`, `GameContext`, `GameRegistry`)
-- [ ] `core/save/` implemented (stubs written: `SaveManager` interface + `PlayerProfile` skeleton — Session 4 will flesh out)
+- [x] `core/save/` implemented (`SaveFile`, full `PlayerProfile`, `JsonSaveManager` — Session 4)
 - [ ] `core/launcher/` implemented
 - [ ] `games/roulette/` implemented
 - [x] Core TUI tests written (`ColorTest`, `MenuStateTest` — all passing)
 - [x] `core/game/` tests written (`GameResultTest`, `GameRegistryTest` — all passing)
+- [x] `core/save/` tests written (`PlayerProfileTest` 9 tests, `SaveManagerTest` 7 tests — all passing)
 - [ ] End-to-end launch works
 
-**Currently working on:** _nothing — Session 3 complete_  
-**Last decision made:** `GameContext` forward-references `core.save.SaveManager`; minimal stubs for `SaveManager` and `PlayerProfile` were added to unblock compilation — they throw `UnsupportedOperationException` and will be replaced in Session 4.  
+**Currently working on:** _nothing — Session 4 complete_  
+**Last decision made:** `JsonSaveManager` takes an optional `File` constructor arg for testability; default constructor uses `arcade_save.json` in project root. `PlayerProfile` constructor is package-private — only `JsonSaveManager` constructs it; tests are in same package so they access it directly.  
 **Blockers / open questions:** _nothing_
 
 ---
 
 ## Notes for Next Session
 
-- Next session: Session 4 — `core/save/` (`SaveFile`, full `SaveManager` impl, full `PlayerProfile` impl) + `SaveManager` round-trip tests
+- Next session: Session 5 — `core/launcher/` (`Main`, `ArcadeLauncher`) + `games/roulette/` (`RussianRoulette`)
+- After launcher is done, full end-to-end launch should work via `demo.bat`
 - `MenuDemo` in `core/tui/MenuDemo.java` is a temporary smoke-test — delete before v0.1.0
 
 ## Windows Terminal Notes (do not re-debate)

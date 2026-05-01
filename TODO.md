@@ -13,13 +13,6 @@ _Nothing yet._
 
 ## 📋 Up Next (ordered)
 
-### Session 4 — Core Save System (`core/save/`)
-- [ ] `PlayerProfile.java` — flat key-value, typed getters with defaults, `set()`
-- [ ] `SaveFile.java` — players map + global map, Gson serialization
-- [ ] `SaveManager.java` — interface
-- [ ] `SaveManagerImpl.java` — loads from / writes to `arcade_save.json` via Gson, creates file if missing
-- [ ] JUnit 6 tests: round-trip write/read, default values, multiple profiles, file-not-found bootstrap
-
 ### Session 5 — Russian Roulette (`games/roulette/`)
 - [ ] Strengthen `GameRegistryTest` — add test that a class with `@ArcadeGame` in the `games` package is discovered; add test that a class without the annotation is excluded (currently vacuous assertions)
 - [ ] `RussianRoulette.java` — implements `Game`, annotated with `@ArcadeGame`
@@ -65,6 +58,13 @@ _None currently._
 ---
 
 ## ✅ Done
+
+### Session 4 — Core Save System (`core/save/`)
+- [x] `PlayerProfile.java` — flat key-value, typed getters with defaults, `set()`; handles Gson Double-for-int coercion
+- [x] `SaveFile.java` — players map + global map, Gson serialization
+- [x] `SaveManager.java` — interface
+- [x] `JsonSaveManager.java` — loads from / writes to `save/arcade_save.json` via Gson; `File` constructor arg for testability
+- [x] JUnit 6 tests: `PlayerProfileTest` (9 cases), `SaveManagerTest` (7 cases) — all passing
 
 ### Session 3 — Core Game Interfaces (`core/game/`)
 - [x] `ArcadeGame.java` — the annotation
